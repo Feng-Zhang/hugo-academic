@@ -133,6 +133,16 @@ comments:
     show_count: true
   commento:
     url: ''
+  valine:
+    enable: true
+    appId : 'jEBPUbl8lfsIb0rMuuz1lMD8-gzGzoHsz'
+    appKey : 'TxmKD1R1THC20JpW0fsPYGoA'
+    notify : false  # mail notifier , https://github.com/xCss/Valine/wiki
+    verify : false # Verification code
+    avatar : 'mm' 
+    placeholder : '说点什么吧...'
+    visitor : true  
+    
 search:
   provider: wowchemy
   algolia:
