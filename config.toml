@@ -1,0 +1,34 @@
+# Academic Website Builder
+# https://sourcethemes.com/academic/
+#
+# The presence of this file is for compatibility with Blogdown and Forestry.
+# If you are not using those tools, this file may be deleted.
+#
+# The actual configuration files are stored in the `config/_default/` folder.
+
+  # Valine.
+  # You can get your appid and appkey from https://leancloud.cn
+  # more info please open https://valine.js.org
+  [params.valine]
+    enable = true
+    appId = 'jEBPUbl8lfsIb0rMuuz1lMD8-gzGzoHsz'
+    appKey = 'TxmKD1R1THC20JpW0fsPYGoA'
+    notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
+    verify = false # Verification code
+    avatar = 'mm' 
+    placeholder = '说点什么吧...'
+    visitor = true
+	
+# <script src="https://utteranc.es/client.js"
+        # repo="Feng-Zhang/blogComment"
+        # issue-term="pathname"
+        # theme="github-light"  
+        # crossorigin="anonymous"
+        # async>
+# </script>
+
+# [params.utteranc]
+    # enable = true
+    # repo = "Feng-Zhang/blogComment"    # 存储评论的Repo，格式为 owner/repo
+    # issueTerm = "pathname"  #表示你选择以那种方式让github issue的评论和你的文章关联。
+    # theme = "github-dark"
