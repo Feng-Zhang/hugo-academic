@@ -8,7 +8,7 @@ authors: [风不止]
 tags: ["生信","miRNA","靶基因","自动化"]
 categories: [生信]
 date: 2020-11-11T18:49:15+08:00
-lastmod: 2020-11-11T18:49:15+08:00
+lastmod: 2020-11-12T18:49:15+08:00
 featured: false
 draft: false
 
@@ -38,7 +38,7 @@ image:
 
 以hsa-miR-320a为例，查询后的结果如下图所示：
 
-![miRTarBase例子](/figures/blog/20201112210815.png)
+![miRTarBase例子](20201112210815.png)
 
 其中值得注意的是：所有的相互作用对来源于6种证据，有reporter assay, western blot, qPCR, Microarray, NGS, PSILAC。前面三种证据的可靠较强。
 
@@ -46,7 +46,7 @@ image:
 
 ### [miRDB](http://www.mirdb.org/index.html)
 
-![miRDB例子](/figures/blog/20201112211031.png)
+![miRDB例子](20201112211031.png)
 
 miRDB的可靠性则通过Target Score来体现，从高到低进行排序。点击相对应的Details可以查看相匹配的位点。
 
@@ -56,9 +56,7 @@ miRDB的可靠性则通过Target Score来体现，从高到低进行排序。点
 
 TargetScan 则通过搜索mRNA的保守 8mer, 7mer, 和6mer 位点来与miRNA相匹配。然后按一个总的得分进行排序。
 
-
-
-![TargetScan例子](/figures/blog/20201112083335140.png)
+![TargetScan例子](20201112083335140.png)
 
 
 

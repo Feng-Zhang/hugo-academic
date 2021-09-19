@@ -7,8 +7,8 @@ summary: "生信是一门交叉学科，要学习的东西非常多。如何快�
 authors: [风不止]
 tags: ["生信","生物信息","入门","教程","路线图","实践"]
 categories: [生信]
-date: 2020-10-10T09:23:30+08:00
-lastmod: 2020-10-10T09:23:30+08:00
+date: 2020-10-10
+lastmod: 2020-10-12
 featured: false
 draft: false
 
@@ -20,17 +20,11 @@ image:
   focal_point: ""
   preview_only: false
 
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-projects: []
 ---
 
 
 
-{{% toc %}}
+{{< toc >}}
 
 # 生物信息最佳入门实践路线图
 

@@ -5,7 +5,8 @@ summary: "windows下使用linux (WSL)系统时如何正确安装g++"
 authors: [风不止]  
 tags: ["win10","ubuntu","g++ install","安装"]  
 categories: [windows]  
-date: 2020-09-15T15:56:11+08:00
+date: 2020-09-15
+lastmod: 2020-09-16
 featured: false
 draft: false
 
