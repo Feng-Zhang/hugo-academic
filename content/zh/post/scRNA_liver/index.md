@@ -5,8 +5,8 @@ title: "single cell RNA-seq全流程复现HCC文章"
 subtitle: ""
 summary: "复现单细胞文章: Single-cell RNA sequencing unravels the immunosuppressive landscape and tumor heterogeneity of HBV-associated hepatocellular carcinoma"
 authors: [风不止]
-tags: ["生信","scRNA","单细胞","文章复现"]
-categories: ["生信","单细胞"]
+tags: ["生信","scRNA","单细胞","文章复现","HCC"]
+categories: ["转录组","单细胞"]
 date: 2021-09-06
 lastmod: 2021-09-07
 featured: false
@@ -24,6 +24,9 @@ image:
 ---
 
 {{< toc  >}}
+
+[Single-cell RNA sequencing shows the immunosuppressive landscape and tumor heterogeneity of HBV-associated hepatocellular carcinoma](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8211687/)是2021年6月刚发表在NC上的文章，主要是利用单细胞转录组分析HCC患者的肿瘤异质性和免疫相关内容。本文主要复现这篇文章的生物信息分析方面的结果，包括上游的比对和定量，下游的异质性和细胞互作等内容。
+
 ## The upstream analyses of Single cell RNA-seq data
 
 ### Data collection
@@ -257,8 +260,7 @@ The proportion of different cells in 8 HCC cases are calculated :
 
 ### T cells and macrophages
 
-The correlation between proportion of T cells and macrophages in cases
-are calculated:
+The correlation between proportion of T cells and macrophages in cases are calculated:
 
     # correlation
     ggplot(cellPro, aes(x = M2, y = CD8)) + 
@@ -270,9 +272,7 @@ are calculated:
 
 ![](unnamed-chunk-12-1.png)
 
-To compared with bulk RNA-seq , the immune cell deconvolution analysis
-is performed, and the correaltion relationship is represent by linear
-model :
+To compared with bulk RNA-seq , the immune cell deconvolution analysis is performed, and the correaltion relationship is represent by linear model :
 
     # tcga immune cell
     lihc = read.csv("cluster/6_prognosis/TCGA_LIHC_TME_results.csv",head=T)
@@ -285,8 +285,7 @@ model :
 
 ![](unnamed-chunk-13-1.png)
 
-We also detect inverse correlation between the proportions of
-infiltrating T cells and macrophages.
+We also detect inverse correlation between the proportions of infiltrating T cells and macrophages.
 
 ### Immunosuppressive marker expression of TAMs
 
@@ -302,19 +301,15 @@ We examined the expression of reported immunosuppressive genes in TAMs:
 ![](unnamed-chunk-14-2.png)
 
 These markers are enriched in TAM cells.  
-In addition, the pattern of CD163 (M2 macrophages marker) expression and
-LAIR1 is similar:
+In addition, the pattern of CD163 (M2 macrophages marker) expression and LAIR1 is similar:
 
     cellKeep = colnames(cleanSeurats)[cleanSeurats@meta.data$celltype_main=="Macrophages"]
     VlnPlot(subset(cleanSeurats,cells=cellKeep), features = c("CD163", "LAIR1", "CD68","HAVCR2","LGALS9","VSIR"))
 
 ![](unnamed-chunk-15-1.png)
 
-These suggest the immunosuppressive function of TAMs might be exerted
-via LAIR1.  
-In addition, the high expression of `LAIR1` and `HAVCR2` is
-significantly associated with poorer overall or disease-free survival of
-HCC patients.
+These suggest the immunosuppressive function of TAMs might be exerted via LAIR1.  
+In addition, the high expression of `LAIR1` and `HAVCR2` is significantly associated with poorer overall or disease-free survival of HCC patients.
 
 The overall survival for LAIR1 ![LAIR1](Overall_LAIR1.png),
 and for HAVCR2 ![HAVCR2](Overall_HAVCR2.png).
@@ -342,17 +337,11 @@ The disease-free survival for LAIR1
     cds <- estimate_size_factors(cds)
     cds@rowRanges@elementMetadata@listData[["gene_short_name"]] <- rownames(cleanSeurats[["RNA"]])
 
-We do the single cell trajectory for CD8 population, and observed that
-gradual transition of CD8 T cells towards the subpopulations with
-exhaustion status was indicated by the upregulation of PDCD1 (PD-1) and
-TIGIT (T cell immunoreceptor with Ig and ITIM domains).
+We do the single cell trajectory for CD8 population, and observed that gradual transition of CD8 T cells towards the subpopulations with exhaustion status was indicated by the upregulation of PDCD1 (PD-1) and TIGIT (T cell immunoreceptor with Ig and ITIM domains).
 
     cds_subset <- cds[, colData(cds)$seurat_clusters%in% c(10,16)]
     cds_subset <- cluster_cells(cds_subset)
     cds_subset <- learn_graph(cds_subset)
-    
-    ##   |                                                                                                             |                                                                                                     |   0%  |                                                                                                             |=====================================================================================================| 100%
-    
     cds_subset <- order_cells(cds_subset,root_pr_nodes=get_earliest_principal_node(cds_subset,cluster=10))
     # for CD8
     plot_cells(cds_subset,
@@ -369,17 +358,12 @@ TIGIT (T cell immunoreceptor with Ig and ITIM domains).
 
 ![](unnamed-chunk-17-2.png)
 
-We find that exhaustion status was indicated by the downregulation of
-FCGR3A (activation marker) and upregulation of KLRC1 (exhaustion
-marker).
+We find that exhaustion status was indicated by the downregulation of FCGR3A (activation marker) and upregulation of KLRC1 (exhaustion marker).
 
     # for NK cells
     cds_subset <- cds[, colData(cds)$seurat_clusters%in% c(15)]
     cds_subset <- cluster_cells(cds_subset)
     cds_subset <- learn_graph(cds_subset)
-    
-    ##   |                                                                                                             |                                                                                                     |   0%  |                                                                                                             |=====================================================================================================| 100%
-    
     cds_subset <- order_cells(cds_subset,root_pr_nodes=get_earliest_principal_node(cds_subset,cluster=15))
     
     plot_cells(cds_subset,
@@ -396,15 +380,11 @@ marker).
 
 ![](unnamed-chunk-18-2.png)
 
-We find the transition toward a more immunosuppressive state for Treg
-cells, as indicated by the enriched PDCD1 expression.
+We find the transition toward a more immunosuppressive state for Treg cells, as indicated by the enriched PDCD1 expression.
 
     cds_subset <- cds[, colData(cds)$seurat_clusters%in% c(5,29)]
     cds_subset <- cluster_cells(cds_subset)
     cds_subset <- learn_graph(cds_subset)
-    
-    ##   |                                                                                                             |                                                                                                     |   0%  |                                                                                                             |=====================================================================================================| 100%
-    
     cds_subset <- order_cells(cds_subset,root_pr_nodes=get_earliest_principal_node(cds_subset,cluster=5))
     plot_cells(cds_subset,
                label_cell_groups=T,
@@ -420,16 +400,12 @@ cells, as indicated by the enriched PDCD1 expression.
 
 ![](unnamed-chunk-19-2.png)
 
-For macrophages, a dynamic transition towards more immunosuppressive M2
-macrophages featured by CD163 and LAIR1 expression.
+For macrophages, a dynamic transition towards more immunosuppressive M2 macrophages featured by CD163 and LAIR1 expression.
 
     # for TAMs
     cds_subset <- cds[, colData(cds)$seurat_clusters%in% c(3,9,14,18,21)]
     cds_subset <- cluster_cells(cds_subset)
     cds_subset <- learn_graph(cds_subset)
-    
-    ##   |                                                                                                             |                                                                                                     |   0%  |                                                                                                             |=====================================================================================================| 100%
-    
     cds_subset <- order_cells(cds_subset,root_pr_nodes=get_earliest_principal_node(cds_subset,cluster=9))
     
     plot_cells(cds_subset,
@@ -446,16 +422,11 @@ macrophages featured by CD163 and LAIR1 expression.
 
 ![](unnamed-chunk-20-2.png)
 
-Regarding the CD4 T cells, they were mainly type 1 (Th1) and type 2T
-helper (Th2) cells, as indicated by their respective enrichment in the
-expression of STAT4 (cell cluster 11) and GATA3 (cell cluster 12).
+Regarding the CD4 T cells, they were mainly type 1 (Th1) and type 2T helper (Th2) cells, as indicated by their respective enrichment in the expression of STAT4 (cell cluster 11) and GATA3 (cell cluster 12).
 
     cds_subset <- cds[, colData(cds)$seurat_clusters%in% c(1,2,6,17)]
     cds_subset <- cluster_cells(cds_subset)
     cds_subset <- learn_graph(cds_subset)
-    
-    ##   |                                                                                                             |                                                                                                     |   0%  |                                                                                                             |=====================================================================================================| 100%
-    
     cds_subset <- order_cells(cds_subset,root_pr_nodes=get_earliest_principal_node(cds_subset,cluster=2))
     plot_cells(cds_subset,
                label_cell_groups=T,
@@ -473,12 +444,8 @@ expression of STAT4 (cell cluster 11) and GATA3 (cell cluster 12).
 
 ### Immune checkpoints
 
-Immune checkpoints function as “brakes” on T cell immune responses
-resulting in the weakening of T cell attack and immune tolerance or
-escape.  
-We examined the cell-cell interaction status in different cell, and the
-co-stimulatory and co-inhibitory checkpoints in shaping the
-immunosuppressive landscape in HCC are estimated :
+Immune checkpoints function as “brakes” on T cell immune responses resulting in the weakening of T cell attack and immune tolerance or escape.  
+We examined the cell-cell interaction status in different cell, and the co-stimulatory and co-inhibitory checkpoints in shaping the immunosuppressive  andscape in HCC are estimated :
 
     mypvals <- read.delim("cluster/7_interaction/out/pvalues.txt", check.names = FALSE)
     mymeans <- read.delim("cluster/7_interaction/out/means.txt", check.names = FALSE)
@@ -547,9 +514,7 @@ immunosuppressive landscape in HCC are estimated :
 
 ![](unnamed-chunk-22-2.png)
 
-We identified a prominent co-inhibitory signal via the *TIGIT-NECTIN2*
-axis in T cells and antigen-presenting cells (APCs, i.e. macrophages and
-tumor cells):
+We identified a prominent co-inhibitory signal via the *TIGIT-NECTIN2* axis in T cells and antigen-presenting cells (APCs, i.e. macrophages and tumor cells):
 
     FeaturePlot(cleanSeurats, features = c("TIGIT","NECTIN2"))
 
@@ -624,22 +589,14 @@ In general, HCC tumor cells frequently interacted with immune cells.
 
 The unsupervised hierarchical clustering of LCSC markers is shown as
 ![LCSC\_cluster](LCSC_cluster.png).  
-All cells are split into 7 clusters, one of which including 6 cells can
-be ignored): ![LUSC\_umap](LUSC_umap.jpg)  
-We find that the modest correlation between case identity and LCSC
-marker group status.
+All cells are split into 7 clusters, one of which including 6 cells can be ignored: ![LUSC\_umap](LUSC_umap.jpg)  
+We find that the modest correlation between case identity and LCSC marker group status.
 
-To further explore the heterogeneity landscape of HCC tumor cell, the
-CNV status is inferred using infercnv
-package.![infercnv](infercnv.png)  
+To further explore the heterogeneity landscape of HCC tumor cell, the CNV status is inferred using infercnv package.![infercnv](infercnv.png)  
 The results showed that there are 9 major group of HCC tumor cells.
-These cells from 9 major group are clustered together according to their
-case identify.
+These cells from 9 major group are clustered together according to their case identify.
 
 ## Idea
 
-1.  to research molecular mechanism of key gene based on conditional
-    knockout mice, regrading their basic structure and function,
-    novelty, and unique expressed in certain cell.  
-2.  using new technology to sequence the HCC sample, such as spatial
-    single RNA-seq technology.
+1.  to research molecular mechanism of key gene based on conditional knockout mice, regrading their basic structure and function, novelty, and unique expressed in certain cell.  
+2.  using new technology to sequence the HCC sample, such as spatial single RNA-seq technology.
