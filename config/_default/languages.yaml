@@ -12,11 +12,11 @@ en:
 zh:
  languageCode: zh-Hans
  contentDir: content/zh
- title: 数欲静而风不止
+ title: 生信之家
  params:
    description: Site description in Chinese...
  menu:
    main:
-     - name: 风不止
+     - name: 章峰
        url: '#about'
        weight: 1
