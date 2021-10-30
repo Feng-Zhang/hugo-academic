@@ -6,7 +6,7 @@ authors: [风不止]
 tags: ["生信","anaconda","conda","r-base","RNA-seq"]
 categories: ["语言","workflow","conda"]
 date: 2021-10-21
-lastmod: 2021-10-21
+lastmod: 2021-10-28
 featured: false
 draft: false
 
@@ -53,9 +53,9 @@ miniconda下载地址： https://docs.conda.io/en/latest/miniconda.html#latest-m
 
 ### 2. 安装Anaconda  
 ```
-bash Anaconda2-4.1.0-Linux-x86_64.sh  
+bash Anaconda3-2021.05-Linux-x86_64.sh  
 # specify a different location below  
->>> /home/zhangfeng/bin/anaconda2  
+>>> /home/zhangfeng/bin/anaconda3  
 ```
 注意指定安装目录时，不能进行修改。如果有错字，使用删除键也不行。    
 
@@ -72,11 +72,11 @@ channels:
   - defaults
 show_channel_urls: true
 ```
-即从国外的服务器下载不同软件包，也就是说如果通过r通道下载软件，是指从 https://conda.anaconda.org/r/网站下载  
+即从国外的服务器下载不同软件包。`- r`表示通过r通道下载软件，即指从 https://conda.anaconda.org/r/网站下载  
 conda-forge是指从 https://conda.anaconda.org/conda-forge/网站下载  
 
 默认下载网址为[Anaconda的官方服务器](https://conda.anaconda.org/)，安装包时下载速度很慢，所以设置国内镜像很重要。清华大学的[TUNA镜像源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)有Anaconda仓库的镜像，我们将其加入conda的配置即可，即修改`~/.condarc`文件内容。conda会从.condarc中下载通道按顺序搜索软件包。  
-defaults ：默认会包括所有的下载通道。如果不指定通道则从defaults的网站下载。  
+defaults ：默认下载通道。如果不指定通道则从defaults通道下载。  
 channel_alias：修改指向defaults的网址，我们可以用 https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/镜像代替。
 
 修改后的.condarc文件：
@@ -112,10 +112,8 @@ conda-forge和bioconda通道里的软件包比较新，推荐使用。
 
 ### 常用命令
 ```
-activate  // 切换到base环境
-conda activate learn // 切换到learn环境
-conda create -n learn python=3  // 创建一个名为learn的环境并指定python版本为3(的最新版本)
-source activate learn //激活learn环境
+conda create -n learn python=3  // 创建一个名为learn的环境并指定python版本为3(最新版本)
+conda activate learn //激活learn环境
 conda env list // 列出conda管理的所有环境
 conda list // 列出当前环境的所有包
 conda search --full-name <package_full_name> //搜索包
