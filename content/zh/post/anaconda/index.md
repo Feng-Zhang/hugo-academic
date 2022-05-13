@@ -2,7 +2,7 @@
 title: "Anaconda使用教程"
 subtitle: ""
 summary: "较为全面地介绍Anaconda的使用方法，并以RNA-seq环境和R环境的安装进行举例"
-authors: [风不止]
+authors: [章峰]
 tags: ["生信","anaconda","conda","r-base","RNA-seq"]
 categories: ["语言","workflow","conda"]
 date: 2021-10-21

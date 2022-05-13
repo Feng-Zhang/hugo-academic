@@ -4,7 +4,7 @@
 title: "使用不同方法规一化、PCA和批次效应矫正的差异"
 subtitle: ""
 summary: "使用不同方法对转录组数据进行规一化、PCA和批次效应矫正，并比较其差异"
-authors: [风不止]
+authors: [章峰]
 tags: ["生信","转录组","PCA","批次效应"]
 categories: ["转录组"]
 date: 2022-04-28

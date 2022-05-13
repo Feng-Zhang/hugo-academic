@@ -2,7 +2,7 @@
 title: " 在win10中使用ubuntu子系统WSL如何安装g++"  
 subtitle: ""  
 summary: "windows下使用linux (WSL)系统时如何正确安装g++"  
-authors: [风不止]  
+authors: [章峰]  
 tags: ["win10","ubuntu","g++ install","安装"]  
 categories: [windows]  
 date: 2020-09-15

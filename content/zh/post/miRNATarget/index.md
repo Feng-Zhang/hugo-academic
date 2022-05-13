@@ -4,7 +4,7 @@
 title: "miRNA的靶基因预测详细教程"
 subtitle: ""
 summary: "miRNA的靶基因预测详细教程，自动化代码实现预测分析"
-authors: [风不止]
+authors: [章峰]
 tags: ["生信","miRNA","靶基因","自动化"]
 categories: [生信]
 date: 2020-11-11T18:49:15+08:00

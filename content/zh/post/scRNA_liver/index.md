@@ -4,7 +4,7 @@
 title: "single cell RNA-seq全流程复现HCC文章"
 subtitle: ""
 summary: "复现单细胞文章: Single-cell RNA sequencing unravels the immunosuppressive landscape and tumor heterogeneity of HBV-associated hepatocellular carcinoma"
-authors: [风不止]
+authors: [章峰]
 tags: ["生信","scRNA","单细胞","文章复现","HCC"]
 categories: ["转录组","单细胞"]
 date: 2021-09-06
