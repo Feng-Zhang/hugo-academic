@@ -132,7 +132,9 @@ plot_rctd <- function(RCTD,seu_obj, image_name="VLP43_kidney_A1",r=3){
 
 ## Visium空间转录组技术
 
-当前时代的空间转录组技术大致分为五类方向：激光显微切割（laser capture microdissection，LCM），单分子荧光原位杂交（single molecular fluorescent in situ hybridization, smFISH），靶向原位测序（In situ sequencing，ISS），原位阵列捕获（In situ array capture, Array） 和 其他非成像技术（No imaging）。 目前商业用的最广的还是Visium平台，因此我们以Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析。使用的工具是Seurat，spacexr等包。在单细胞下流分析领域，Seurat是一个非常强大的R包。不仅有强大的社区、详细文档说明还有很多内置数据。这里以[Analysis, visualization, and integration of spatial datasets with Seurat ](https://satijalab.org/seurat/articles/spatial_vignette.html)数据为例进行空间转录组分析。
+当前时代的空间转录组技术大致分为五类方向：激光显微切割（laser capture microdissection，LCM），单分子荧光原位杂交（single molecular fluorescent in situ hybridization, smFISH），靶向原位测序（In situ sequencing，ISS），原位阵列捕获（In situ array capture, Array） 和 其他非成像技术（No imaging）。 
+
+目前商业用的最广的还是Visium平台，因此我们以Visium数据为例进行演示，进行如聚类，差异表达，反卷积等分析。使用的工具是Seurat，spacexr等包。在单细胞下游分析中，Seurat是一个非常强大的R包，不仅有强大的社区、详细文档说明还有很多内置数据。这里以[Analysis, visualization, and integration of spatial datasets with Seurat ](https://satijalab.org/seurat/articles/spatial_vignette.html)数据为例进行空间转录组分析。
 
 ## 1. 数据探索
 
@@ -181,14 +183,9 @@ p2 <- SpatialDimPlot(brain, label = TRUE, label.size = 3)
 p1 + p2
 ```
 
-
 ![png](output_6_0.png)
 ![png](output_6_2.png)
     
-
-
-
-
 ![png](output_6_3.png)
     
 
@@ -204,9 +201,8 @@ head(de_markers)
 SpatialFeaturePlot(object = brain, features = rownames(de_markers)[1:3], alpha = c(0.1, 1), ncol = 3)
 ```
 
-
 <table class="dataframe">
-<caption>A data.frame: 6 Ă 5</caption>
+<caption>A data.frame: 6 * 5</caption>
 <thead>
 	<tr><th></th><th scope=col>p_val</th><th scope=col>avg_log2FC</th><th scope=col>pct.1</th><th scope=col>pct.2</th><th scope=col>p_val_adj</th></tr>
 	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
@@ -220,6 +216,7 @@ SpatialFeaturePlot(object = brain, features = rownames(de_markers)[1:3], alpha =
 	<tr><th scope=row>Lingo1</th><td>2.124777e-67</td><td>-1.913281</td><td>0.880</td><td>1.000</td><td>3.754056e-63</td></tr>
 </tbody>
 </table>
+
 
 
 
@@ -271,13 +268,8 @@ head(res$table)
 ```
 
 
-​    
-     aged young 
-    10715 11479 
-
-
-
-'SingleCellExperiment'
+​     aged young 
+​    10715 11479 
 
 
 
@@ -308,14 +300,14 @@ head(res$table)
     VLP40_1B_3  VLP40_1B_3       865
 
 
-​    
-       -1     0     1 
-       87 14105   203 
-
+```
+-1     0     1 
+ 87 14105   203 
+```
 
 
 <table class="dataframe">
-<caption>A data.frame: 6 Ă 6</caption>
+<caption>A data.frame: 6 * 6</caption>
 <thead>
 	<tr><th></th><th scope=col>logFC</th><th scope=col>unshrunk.logFC</th><th scope=col>logCPM</th><th scope=col>PValue</th><th scope=col>FDR</th><th scope=col>regulate</th></tr>
 	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
@@ -329,6 +321,7 @@ head(res$table)
 	<tr><th scope=row>Fcgr2b</th><td>1.4622417</td><td>1.4650595</td><td>2.751271</td><td>1.811064e-14</td><td>4.032808e-11</td><td>Up</td></tr>
 </tbody>
 </table>
+
 
 
 ## 5. Deconvolution分析
@@ -369,7 +362,7 @@ head(brain@meta.data)
 
 
 <table class="dataframe">
-<caption>A data.frame: 6 Ă 17</caption>
+<caption>A data.frame: 6 * 17</caption>
 <thead>
 	<tr><th></th><th scope=col>orig.ident</th><th scope=col>nCount_Spatial</th><th scope=col>nFeature_Spatial</th><th scope=col>group</th><th scope=col>nCount_SCT</th><th scope=col>nFeature_SCT</th><th scope=col>SCT_snn_res.0.1</th><th scope=col>seurat_clusters</th><th scope=col>Astrocytes</th><th scope=col>Ependymal</th><th scope=col>Immune</th><th scope=col>Microglia</th><th scope=col>Neurons</th><th scope=col>Oligos</th><th scope=col>PeripheralGlia</th><th scope=col>Vascular</th><th scope=col>max_cell</th></tr>
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
@@ -395,7 +388,7 @@ p_brain <- plot_rctd(myRCTD_full,brain,image_name = slice_id)+ggtitle(slice_id)+
     guides(colour = "none")
 p_brain
 ```
-![99-visium-brain-rctd-label.png](brain-rctd.png)
+![](brain-rctd.png)
 
 
 ```R
