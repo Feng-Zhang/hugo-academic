@@ -7,8 +7,8 @@ summary: "Visium数据为例进行演示，进行如聚类，差异表达，反�
 authors: [章峰]
 tags: ["Visium","聚类","差异表达","反卷积"]
 categories: ["生信"]
-date: 2022-05-13
-lastmod: 2022-05-13
+date: 2023-05-9
+lastmod: 2023-05-9
 featured: false
 draft: false
 
