@@ -10,15 +10,15 @@ main:
   - name: 博客
     url: '#posts'
     weight: 20
-  - name: 系列文章
+  - name: 书籍
     url: 'books/'
     weight: 30
   # - name: Talks
     # url: '#talks'
     # weight: 40
-  # - name: Publications
-    # url: '#featured'
-    # weight: 50
+  - name: 文章 
+    url: '#publications'
+    weight: 50
   - name: 联系
     url: '#contact'
     weight: 60

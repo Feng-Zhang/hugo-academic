@@ -36,7 +36,6 @@ design:
   #   4 = Citation (publication only)
   view: 4
 ---
-
 - Jiang Q., Chen M., Yang X., Zhuge D., Yin Q., Tian D., Li L., Zhang X., Xu W., Liu S., Li F., Weng C., Lin Y., Wang H., Rao D., Chen Y., Cai Q., Yan L., Wang L., Wang F., Lu X., Wen B., Zhao Y.<sup>\*</sup>, **Zhang F.**<sup>\*</sup>, Xia W.<sup>\*</sup>, Zhu H.<sup>\*</sup>, and Chen Y.<sup>\*</sup>, Doxorubicin Detoxification in Healthy Organs Improves Tolerability to High Drug Doses for Enhanced Antitumor Therapy. ACS Nano, 2023. 17(8): p. 7705-7720.
 - **Zhang, F.**, Y. Wang, R. Mukiibi, L. *et al.* Genetic architecture of quantitative traits in beef cattle revealed by genome wide association studies of imputed whole genome sequence variants: I: feed efficiency and component traits. BMC Genomics, 2020. 21(1):36.
 - **Zhang F.**, Zeng L.P., Cai Q.M. et al. Comprehensive analysis of long noncoding RNA-associated competing endogenous RNA network in Wilms’ tumor. Cancer Control. 2020, 27(2): 1073274820936991
